@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import App from './App';
 
-test('renders learn react link', () => {
+test('that app renders very well', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const appMainElement = screen.getByTestId("nifty-task-wrapper");
+  expect(appMainElement).toBeInTheDocument();
 });
