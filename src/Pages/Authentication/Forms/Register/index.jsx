@@ -1,7 +1,144 @@
+import {useState} from "react";
+import {useNavigate} from "react-router";
+
+import API from "Utils/API";
+import checkFormValidation from "Utils/Hooks/checkFormValidation";
+
+import Field from "Components/Field";
+import SolidButton from "Components/SolidButton";
+import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
+
 export default function Register() {
+    const navigate = useNavigate();
+
+    const [form, setForm] = useState({ email: "", name: "", username: "", password: "" });
+    const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({ email: "", password: "", api: "" });
+
+    /**
+     * A function that handles the registration form submission.
+     * It will check if the form is valid, if not, it will set the errors' state and return.
+     * If the form is valid, it will send a request to the API.
+     *
+     * @param e
+     */
+    const { apiResponse } = API({ endpoint: 'auth/register', method: "POST", data: form });
+    const handleLogin = (e) => {
+        e.preventDefault();
+
+        const {isValid, errors} = checkFormValidation(form, ["email", "name", "username", "password"]);
+
+        if (!isValid) {
+            return setErrors(errors);
+        }
+
+        setLoading(true);
+        apiResponse()
+            .then(({ data, status }) => {
+                if (status === 200) {
+                    toast.success("You have registered successfully. Will be redirected soon.", {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+
+                    setTimeout(() => {
+                        navigate("/auth/login", { replace: true });
+                    }, 2200);
+                } else if (status >= 400 && status < 500) {
+                    setErrors({...data.errors });
+                } else {
+                    setErrors({
+                        email: "",
+                        password: "",
+                        api: { msg: "Something went wrong. Please try again later." }
+                    });
+                }
+            })
+            .catch((e) => {
+                if (e.response && e.response.data) {
+                    const { errors } = e.response.data;
+                    setErrors(errors);
+                }
+            })
+            .finally(() => {
+                setLoading(false);
+            })
+    }
+
+    const handleChange = (key, value) =>
+        setForm(prevState => ({ ...prevState, [key]: value }));
+
     return (
-        <>
-            Register
-        </>
+        <section className={"authentication-form-container"}>
+            <h2>Welcome back!</h2>
+
+            <form onSubmit={handleLogin}>
+                <Field
+                    title={"Name"}
+                    type={"name"}
+                    name={"name"}
+                    placeholder={"John Smith"}
+                    value={form.name}
+                    onChange={(name) => handleChange("name", name)}
+                    error={errors.name ? errors.name["msg"] : null}
+                    autoComplete={"name"}
+                />
+
+                <Field
+                    title={"Username"}
+                    type={"username"}
+                    name={"username"}
+                    placeholder={"john.smith"}
+                    value={form.username}
+                    onChange={(username) => handleChange("username", username)}
+                    error={errors.username ? errors.username["msg"] : null}
+                    autoComplete={"username"}
+                />
+
+                <Field
+                    title={"Email address"}
+                    type={"email"}
+                    name={"email"}
+                    placeholder={"example@niftytask.com"}
+                    value={form.email}
+                    onChange={(email) => handleChange("email", email)}
+                    error={errors.email ? errors.email["msg"] : null}
+                    autoComplete={"email"}
+                />
+
+                <Field
+                    title={"Password"}
+                    type={"password"}
+                    name={"password"}
+                    placeholder={"••••••••"}
+                    value={form.password}
+                    onChange={(password) => handleChange("password", password)}
+                    error={errors.password ? errors.password["msg"] : null}
+                    autoComplete={"current-password"}
+                />
+
+                {!!errors.api?.msg && <p className={"form-error"}>{errors.api?.msg}</p>}
+
+                <SolidButton
+                    title={"Sign up"}
+                    type={"submit"}
+                    disabled={loading}
+                />
+            </form>
+
+            <div className={"form-link"}>
+                Already have an account?&nbsp;
+                <Link to={"/auth/login"}>
+                    Sign in
+                </Link>
+            </div>
+        </section>
     )
 }
