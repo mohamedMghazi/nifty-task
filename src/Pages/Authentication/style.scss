@@ -46,7 +46,8 @@
             text-transform: capitalize;
         }
 
-        form {
+        form
+        {
             display: flex;
             flex-direction: column;
             flex-wrap: nowrap;
@@ -57,6 +58,13 @@
             max-width: 400px;
             padding: 0 2rem;
             border-radius: 0.5rem;
+
+            .form-error {
+                color: $errorColor;
+                font-size: 0.8rem;
+                font-weight: 500;
+                margin-bottom: 1rem;
+            }
         }
     }
 }
