@@ -1,13 +1,10 @@
-import { useState } from 'react';
-
-function _handleError(err, setError) {
+function _handleError(err) {
     if (err.name === "AbortError") {
-        console.log("Request aborted");
+        console.error("Request aborted");
     } else if (err.name === "TypeError") {
-        setError("500 Server Error");
+        console.error("500 Server Error");
     } else {
         console.error("Unexpected error:", err);
-        setError("Unexpected error occurred");
     }
 }
 
@@ -20,42 +17,38 @@ function BaseURL(environment) {
     return baseURLs[environment];
 }
 
-export default function API({ endpoint, method = "GET", data = {} }) {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
+function API({ endpoint, method = "GET", data = {} }) {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    const body = method !== "GET" && method !== "DELETE" ? data : null;
+    const body = method !== "GET" && method !== "DELETE" ? JSON.stringify(data) : null;
 
     const url = `${BaseURL(process.env.REACT_APP_MODE) ?? process.env.REACT_APP_PRODUCTION_SERVER}/${endpoint}`;
 
     const headers = { Authorization: `Bearer `, "Content-Type": "application/json" };
 
-    const fetchOptions = { method, headers, body, mode: "cors", signal }
+    const fetchOptions = { method, headers, body, mode: "cors", signal };
+    console.log(body)
+    const apiResponse = async () => {
+        try {
+            const response = await fetch(url, fetchOptions);
+            const responseData = await response.json();
 
-    const apiPromise = new Promise((resolve, reject) => {
-        fetch(url, fetchOptions)
-            .then(response => response.json())
-            .then(responseData => {
-                if (!signal.aborted) {
-                    resolve({ data: responseData, status: responseData.status });
-                    setLoading(false);
-                }
-            })
-            .catch(err => {
-                if (!signal.aborted) {
-                    _handleError(err, setError);
-                    reject(err);
-                    setLoading(false);
-                }
-            });
-    });
+            if (!signal.aborted) {
+                return { data: responseData, status: response.status };
+            }
+        } catch (err) {
+            if (!signal.aborted) {
+                _handleError(err);
+            }
+        }
+    };
 
-    apiPromise.abort = function () {
+    const abort = () => {
         controller.abort();
     };
 
-    return { apiPromise, loading, error };
+    return { apiResponse, abort };
 }
+
+export default API;
