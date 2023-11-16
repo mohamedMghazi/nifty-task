@@ -28,7 +28,7 @@ function API({ endpoint, method = "GET", data = {} }) {
     const headers = { Authorization: `Bearer `, "Content-Type": "application/json" };
 
     const fetchOptions = { method, headers, body, mode: "cors", signal };
-    console.log(body)
+
     const apiResponse = async () => {
         try {
             const response = await fetch(url, fetchOptions);
