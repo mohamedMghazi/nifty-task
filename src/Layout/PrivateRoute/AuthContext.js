@@ -1,5 +1,6 @@
 import React, {createContext, useContext} from 'react';
 import PropTypes from "prop-types";
+import CookieManager from "Utils/Storage/CookiesManager";
 
 export const AuthContext = createContext(null);
 
@@ -17,7 +18,8 @@ export const AuthContext = createContext(null);
  * @returns {JSX.Element} - Returns the AuthContext.Provider with the AuthContext value set to the isAuthenticated state.
  */
 export default function AuthProvider({ children }) {
-    const isAuthenticated = false;
+    const Cookies = new CookieManager();
+    const isAuthenticated = !!Cookies.get("X-USER-TOKEN") ?? false;
 
     return (
         <AuthContext.Provider value={{ isAuthenticated }}>
