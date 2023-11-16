@@ -1,5 +1,8 @@
 import Root from "./Root";
 import PrivateRoute from "./PrivateRoute";
+import Authentication from "../Pages/Authentication";
+import Login from "../Pages/Authentication/Login";
+import Register from "../Pages/Authentication/Register";
 
 // TODO: implement 404 and Unexpected error pages
 const PATHS = {
@@ -14,9 +17,19 @@ const PATHS = {
             errorElement: <>Unexpected Error</>,
         },
         {
-            path: "login",
-            element: <>Login</>,
+            path: "authentication",
+            element: <Authentication />,
             errorElement: <>Unexpected Error</>,
+            children: [
+                {
+                    path: "login",
+                    element: <Login />,
+                },
+                {
+                    path: "register",
+                    element: <Register />,
+                },
+            ]
         },
         { path: "*", element: <>Not found</> },
     ],
