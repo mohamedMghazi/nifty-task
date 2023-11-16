@@ -1,0 +1,12 @@
+@import "../../Layout/Styles/style";
+
+.solid-button {
+    display: block;
+    width: 100%;
+    height: 50px;
+    background: $primaryColor;
+    color: $lightColor;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+}
