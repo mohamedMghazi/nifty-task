@@ -1,8 +1,8 @@
 import Root from "./Root";
 import PrivateRoute from "./PrivateRoute";
-import Authentication from "../Pages/Authentication";
-import Login from "../Pages/Authentication/Login";
-import Register from "../Pages/Authentication/Register";
+import Authentication from "Pages/Authentication";
+import Login from "Pages/Authentication/Forms/Login";
+import Register from "Pages/Authentication/Forms/Register";
 
 // TODO: implement 404 and Unexpected error pages
 const PATHS = {
