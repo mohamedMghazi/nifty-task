@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router";
+import {Link} from "react-router-dom";
 
 import API from "Utils/API";
 import checkFormValidation from "Utils/Hooks/checkFormValidation";
@@ -100,6 +101,13 @@ export default function Login() {
                     disabled={loading}
                 />
             </form>
+
+            <div className={"form-link"}>
+                Create an account?&nbsp;
+                <Link to={"/auth/register"}>
+                    Sign up
+                </Link>
+            </div>
         </section>
     )
 }

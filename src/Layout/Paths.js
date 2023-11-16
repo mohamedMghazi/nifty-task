@@ -17,7 +17,7 @@ const PATHS = {
             errorElement: <>Unexpected Error</>,
         },
         {
-            path: "authentication",
+            path: "auth",
             element: <Authentication />,
             errorElement: <>Unexpected Error</>,
             children: [
