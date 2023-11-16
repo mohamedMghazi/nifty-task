@@ -1,6 +1,7 @@
 @import "../../Layout/Styles/style";
 
-.solid-button {
+.solid-button
+{
     display: block;
     width: 100%;
     height: 50px;
@@ -8,5 +9,14 @@
     color: $lightColor;
     font-size: 1.2rem;
     font-weight: 600;
+    border: 0.3px solid $primaryColor;
     border-radius: 0.5rem;
+
+    &:disabled
+    {
+        background: $grayColor;
+        color: $primaryColor;
+        border-color: $primaryColor;
+        pointer-events: none;
+    }
 }
