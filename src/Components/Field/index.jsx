@@ -10,7 +10,7 @@ export default function Field(props) {
 
     return (
         <div className={"field-container"}>
-            <label htmlFor={name}>{title}</label>
+            {title && <label htmlFor={name}>{title}</label>}
             <input
                 type={type}
                 name={name}
@@ -29,7 +29,7 @@ export default function Field(props) {
 }
 
 Field.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     type: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
