@@ -1,7 +1,7 @@
 import "./style.scss";
 
 export default function LoadingIndicator() {
-    const dots = Array(3).fill(0).map((_, index) => ({ id: index }));
+    const dots = Array(3).fill(0).map((_, index) => (`${index}`));
 
     return (
         <div className="loading-indicator">
