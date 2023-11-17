@@ -1,3 +1,5 @@
+import CookieManager from "../Storage/CookiesManager";
+
 function _handleError(err) {
     if (err.name === "AbortError") {
         console.error("Request aborted");
@@ -18,6 +20,8 @@ function BaseURL(environment) {
 }
 
 function API({ endpoint, method = "GET", data = {} }) {
+    const cookies = new CookieManager();
+
     const controller = new AbortController();
     const signal = controller.signal;
 
@@ -25,7 +29,7 @@ function API({ endpoint, method = "GET", data = {} }) {
 
     const url = `${BaseURL(process.env.REACT_APP_MODE) ?? process.env.REACT_APP_PRODUCTION_SERVER}/${endpoint}`;
 
-    const headers = { Authorization: `Bearer `, "Content-Type": "application/json" };
+    const headers = { Authorization: `${cookies.get("X-USER-TOKEN")}`, "Content-Type": "application/json" };
 
     const fetchOptions = { method, headers, body, mode: "cors", signal };
 
