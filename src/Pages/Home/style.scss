@@ -34,7 +34,8 @@
         }
     }
 
-    section {
+    section
+    {
         display: flex;
         flex-grow: 1;
         flex-shrink: 1;
@@ -46,6 +47,10 @@
         padding: 20px;
         overflow: hidden;
         overflow-y: auto;
+
+        header {
+            width: 100%;
+        }
 
         &::-webkit-scrollbar {
             width: 0;

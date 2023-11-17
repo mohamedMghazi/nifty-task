@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 import CookieManager from "../../Utils/Storage/CookiesManager";
 
+import AddTask from "./Components/AddTask";
 import SolidButton from "../../Components/SolidButton";
 
 import "./style.scss";
@@ -19,7 +20,7 @@ export default function Home() {
     }, []);
 
     return (
-        <main id={"home-wrapper"}>
+        <main id={"home-wrapper"} data-testid={"home-wrapper"}>
             <nav>
                 <h1>NiftyTask</h1>
 
@@ -30,7 +31,9 @@ export default function Home() {
             </nav>
 
             <section>
-                <h1>Home</h1>
+                <header>
+                    <AddTask />
+                </header>
             </section>
         </main>
     );
