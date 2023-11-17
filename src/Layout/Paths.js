@@ -3,6 +3,7 @@ import PrivateRoute from "./PrivateRoute";
 import Authentication from "Pages/Authentication";
 import Login from "Pages/Authentication/Forms/Login";
 import Register from "Pages/Authentication/Forms/Register";
+import Home from "Pages/Home";
 
 // TODO: implement 404 and Unexpected error pages
 const PATHS = {
@@ -12,7 +13,7 @@ const PATHS = {
         {
             index: true,
             element: <PrivateRoute>
-                <>Home</>
+                <Home />
             </PrivateRoute>,
             errorElement: <>Unexpected Error</>,
         },
