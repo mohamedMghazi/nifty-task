@@ -52,7 +52,7 @@ export default function Login() {
                 }
             })
             .catch((e) => {
-                if (e.response && e.response.data) {
+                if (e?.response && e?.response?.data) {
                     const { errors } = e.response.data;
                     setErrors(errors);
                 }
@@ -98,7 +98,7 @@ export default function Login() {
                 <SolidButton
                     title={"Login"}
                     type={"submit"}
-                    disabled={loading}
+                    loading={loading}
                 />
             </form>
 

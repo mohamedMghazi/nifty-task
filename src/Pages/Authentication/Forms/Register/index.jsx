@@ -1,13 +1,13 @@
 import {useState} from "react";
 import {useNavigate} from "react-router";
+import {Link} from "react-router-dom";
+import {toast} from "react-toastify";
 
 import API from "Utils/API";
 import checkFormValidation from "Utils/Hooks/checkFormValidation";
 
 import Field from "Components/Field";
 import SolidButton from "Components/SolidButton";
-import {Link} from "react-router-dom";
-import {toast} from "react-toastify";
 
 export default function Register() {
     const navigate = useNavigate();
@@ -48,6 +48,8 @@ export default function Register() {
                         theme: "light",
                     });
 
+                    setForm({ email: "", name: "", username: "", password: "" });
+
                     setTimeout(() => {
                         navigate("/auth/login", { replace: true });
                     }, 2200);
@@ -62,7 +64,7 @@ export default function Register() {
                 }
             })
             .catch((e) => {
-                if (e.response && e.response.data) {
+                if (e?.response && e?.response?.data) {
                     const { errors } = e.response.data;
                     setErrors(errors);
                 }
@@ -77,7 +79,7 @@ export default function Register() {
 
     return (
         <section className={"authentication-form-container"}>
-            <h2>Welcome back!</h2>
+            <h2>Sign up!</h2>
 
             <form onSubmit={handleLogin}>
                 <Field
@@ -129,7 +131,7 @@ export default function Register() {
                 <SolidButton
                     title={"Sign up"}
                     type={"submit"}
-                    disabled={loading}
+                    loading={loading}
                 />
             </form>
 
