@@ -9,20 +9,29 @@
     align-items: normal;
     align-content: stretch;
     height: 100vh;
-    width: 100vw;
-    background-color: $grayColor;
+    max-width: 1440px;
+    margin-right: auto;
+    margin-left: auto;
 
-    nav {
+    nav
+    {
         display: flex;
         flex-grow: 0;
         flex-shrink: 0;
         flex-basis: auto;
         align-self: stretch;
         order: 1;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        padding: 20px 0;
+        justify-content: space-between;
+        align-items: baseline;
+        padding: 20px;
+        color: $secondaryColor;
+
+        button {
+            width: 90px;
+            height: 40px;
+            background: transparent;
+            color: $secondaryColor;
+        }
     }
 
     section {
@@ -34,6 +43,7 @@
         order: 2;
         justify-content: center;
         align-items: flex-start;
+        padding: 20px;
         overflow: hidden;
         overflow-y: auto;
 
