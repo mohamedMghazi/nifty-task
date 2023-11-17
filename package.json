@@ -56,7 +56,8 @@
       "src"
     ],
     "moduleNameMapper": {
-      "\\.(scss)$": "identity-obj-proxy"
+      "\\.(scss)$": "identity-obj-proxy",
+      "\\.(css)$": "identity-obj-proxy"
     },
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
