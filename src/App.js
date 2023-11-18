@@ -1,4 +1,6 @@
 import {useEffect} from "react";
+import {Provider} from "react-redux";
+import reduxStore from "./Utils/Redux";
 import Layout from "Layout";
 import API from "Utils/API";
 
@@ -17,8 +19,10 @@ export default function App() {
     }, []);
 
     return (
-        <main id="nifty-task-wrapper" data-testid={"nifty-task-wrapper"}>
-            <Layout />
-        </main>
+        <Provider store={reduxStore}>
+            <main id="nifty-task-wrapper" data-testid={"nifty-task-wrapper"}>
+                <Layout />
+            </main>
+        </Provider>
     );
 }
