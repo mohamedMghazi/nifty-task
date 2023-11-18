@@ -1,0 +1,46 @@
+@import "../../../../Layout/Styles/style";
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    width: 100%;
+    border-bottom: 0.3px solid $secondaryColor;
+
+    &:nth-child(odd) {
+        background: $fadedPrimaryColor;
+    }
+
+    &:last-child {
+        border: 0;
+    }
+
+    .item-title {
+        flex: 0.9 1;
+        font-size: 1rem;
+        font-weight: 400;
+        color: $secondaryColor;
+        padding: 0.5rem;
+    }
+
+    .item-actions {
+        flex: 0.1 1;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        padding: 0.5rem;
+
+        button {
+            width: 30px;
+            height: 30px;
+            background: transparent;
+            color: $secondaryColor;
+        }
+    }
+}
