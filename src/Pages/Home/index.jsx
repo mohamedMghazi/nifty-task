@@ -1,13 +1,12 @@
 import {useEffect} from "react";
-import CookieManager from "../../Utils/Storage/CookiesManager";
+
+import CookieManager from "Utils/Storage/CookiesManager";
 
 import AddTask from "./Components/AddTask";
 import SolidButton from "../../Components/SolidButton";
-import ListTopBar from "./Components/ListTopBar";
-import ListHeader from "./Components/ListHeader";
-import ListItem from "./Components/ListItem";
 
 import "./style.scss";
+import TasksContainer from "./Containers/TasksContainer";
 
 export default function Home() {
     const cookies = new CookieManager();
@@ -38,17 +37,7 @@ export default function Home() {
                     <AddTask />
                 </header>
 
-                <section id={"tasks-container"}>
-                    <ListTopBar />
-
-                    <main id={"tasks-list-container"}>
-                        <ListHeader />
-
-                        <div className="list-items-wrapper">
-                            <ListItem />
-                        </div>
-                    </main>
-                </section>
+                <TasksContainer />
             </main>
         </div>
     );

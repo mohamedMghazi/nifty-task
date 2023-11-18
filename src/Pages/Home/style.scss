@@ -57,48 +57,10 @@
             width: 0;
         }
 
-        #tasks-container
-        {
-            display: flex;
-            justify-content: flex-start;
-            align-items: flex-start;
-            flex-direction: column;
-            flex-wrap: nowrap;
-            align-content: stretch;
-            width: 100%;
-
-            #tasks-list-container
-            {
-                display: flex;
-                justify-content: flex-start;
-                align-items: flex-start;
-                flex-direction: column;
-                flex-wrap: nowrap;
-                align-content: stretch;
-                width: 100%;
-                margin-top: 20px;
-                border-radius: 0.5rem;
-                box-shadow: 0 0 10px 0 $fadedPrimaryColor;
-                overflow: hidden;
-
-                .list-items-wrapper
-                {
-                    display: flex;
-                    justify-content: flex-start;
-                    align-items: flex-start;
-                    flex-direction: column;
-                    flex-wrap: nowrap;
-                    align-content: stretch;
-                    width: 100%;
-                    max-height: calc(100vh - 350px);
-                    overflow: hidden;
-                    overflow-y: auto;
-
-                    @media (max-width: 768px) {
-                        max-height: calc(100vh - 400px);
-                    }
-                }
-            }
+        .page-error {
+            color: $errorColor;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
     }
 }

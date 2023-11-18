@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
 import {addTask, editTask, fetchTasks, filterTasks} from "./actions";
 
 const tasksReducer = createSlice({
@@ -20,7 +20,7 @@ const tasksReducer = createSlice({
             })
             .addCase(fetchTasks.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = "An error occurred while fetching tasks. Please try again later.";
             })
             .addCase(filterTasks.pending, (state) => {
                 state.status = 'loading';
@@ -31,7 +31,7 @@ const tasksReducer = createSlice({
             })
             .addCase(filterTasks.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = "An error occurred while fetching tasks. Please try again later.";
             })
             .addCase(addTask.pending, (state) => {
                 state.status = 'loading';
@@ -42,7 +42,7 @@ const tasksReducer = createSlice({
             })
             .addCase(addTask.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = "An error occurred while adding task. Please try again later.";
             })
             .addCase(editTask.pending, (state) => {
                 state.status = 'loading';
@@ -50,12 +50,11 @@ const tasksReducer = createSlice({
             .addCase(editTask.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 const { taskId, updatedData } = action.payload;
-                const editedTaskIndex = state.tasks.findIndex((task) => task.id === taskId);
-                state.tasks[editedTaskIndex] = updatedData;
+                state.tasks = state.tasks.map((task) => task._id === taskId ? updatedData : task);
             })
             .addCase(editTask.rejected, (state, action) => {
                 state.status = 'failed';
-                state.error = action.error.message;
+                state.error = "An error occurred while editing task. Please try again later.";
             });
     },
 });

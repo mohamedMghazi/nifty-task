@@ -10,10 +10,7 @@ const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
     try {
         const response = await APIHandler({ endpoint: "tasks" });
 
-        if (response.status !== 200)
-            throw new Error(response.errors);
-
-        return response.data;
+        return response.data.tasks;
     } catch (error) {
         throw error;
     }
@@ -21,9 +18,9 @@ const fetchTasks = createAsyncThunk('tasks/fetchTasks', async () => {
 
 const filterTasks = createAsyncThunk('tasks/filterTasks', async (status = null) => {
     try {
-        const response = await APIHandler({ endpoint: "" });
-        console.log(response);
-        return response.data;
+        const response = await APIHandler({ endpoint: !!status.length ? `tasks/?status=${status}` : "tasks" });
+
+        return response.data.tasks;
     } catch (error) {
         throw error;
     }
@@ -32,7 +29,7 @@ const filterTasks = createAsyncThunk('tasks/filterTasks', async (status = null) 
 const addTask = createAsyncThunk('tasks/addTask', async (taskData) => {
     try {
         const response = await APIHandler({ endpoint: "" });
-        console.log(response);
+
         return response.data;
     } catch (error) {
         throw error;
@@ -41,9 +38,9 @@ const addTask = createAsyncThunk('tasks/addTask', async (taskData) => {
 
 const editTask = createAsyncThunk('tasks/editTask', async ({ taskId, newTitle, newStatus }) => {
     try {
-        const response = await APIHandler({ endpoint: "" });
-        console.log(response);
-        return { taskId, updatedData: response.data };
+        const response = await APIHandler({ endpoint: `tasks/${taskId}`, method: "PUT", data: { title: newTitle, status: newStatus } });
+
+        return { taskId, updatedData: response.data.task };
     } catch (error) {
         throw error;
     }

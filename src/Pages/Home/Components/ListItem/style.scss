@@ -10,7 +10,7 @@
     width: 100%;
     border-bottom: 0.3px solid $secondaryColor;
 
-    &:nth-child(odd) {
+    &:nth-child(even) {
         background: $fadedPrimaryColor;
     }
 
