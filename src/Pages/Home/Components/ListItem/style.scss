@@ -18,12 +18,21 @@
         border: 0;
     }
 
-    .item-title {
+    .item-title
+    {
         flex: 0.9 1;
         font-size: 1rem;
         font-weight: 400;
         color: $secondaryColor;
         padding: 0.5rem;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        &[data-completed="true"] {
+            text-decoration: line-through;
+        }
     }
 
     .item-actions {
@@ -39,8 +48,8 @@
         border-left: 0.3px solid $secondaryColor;
 
         button {
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: auto;
             background: transparent;
             color: $secondaryColor;
         }

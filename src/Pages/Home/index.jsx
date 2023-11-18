@@ -4,10 +4,10 @@ import CookieManager from "../../Utils/Storage/CookiesManager";
 import AddTask from "./Components/AddTask";
 import SolidButton from "../../Components/SolidButton";
 import ListTopBar from "./Components/ListTopBar";
-
-import "./style.scss";
 import ListHeader from "./Components/ListHeader";
 import ListItem from "./Components/ListItem";
+
+import "./style.scss";
 
 export default function Home() {
     const cookies = new CookieManager();
