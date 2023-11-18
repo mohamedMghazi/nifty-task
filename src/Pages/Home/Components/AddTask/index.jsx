@@ -55,6 +55,7 @@ export default function AddTask() {
             />
 
             <SolidButton
+                type={"submit"}
                 title={"Add Task"}
                 loading={loading}
             />
