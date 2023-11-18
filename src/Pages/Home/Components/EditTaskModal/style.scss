@@ -1,0 +1,32 @@
+@import "../../../../Layout/Styles/style";
+
+.update-confirmation {
+    font-size: 1.1rem;
+    font-weight: 550;
+    margin: 0.6rem 0 .81rem;
+    text-align: left;
+    color: $secondaryColor;
+}
+
+.update-confirmation-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+
+    button
+    {
+        flex: 0.5 1;
+        height: 50px;
+        margin: 0;
+        font-weight: 500;
+        font-size: 1rem;
+        background: $secondaryColor;
+
+        &:last-child {
+            background-color: $primaryColor;
+            color: $lightColor;
+            border-radius: 0.5rem;
+        }
+    }
+}
