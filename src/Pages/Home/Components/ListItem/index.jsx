@@ -1,3 +1,4 @@
+import {Magicpen, Trash} from "iconsax-react";
 import "./style.scss";
 
 export default function ListItem() {
@@ -7,8 +8,12 @@ export default function ListItem() {
         </p>
 
         <div className={"item-actions"}>
-            <button>√</button>
-            <button>√</button>
+            <button>
+                <Magicpen size={22} />
+            </button>
+            <button>
+                <Trash size={22} />
+            </button>
         </div>
     </div>
 }
