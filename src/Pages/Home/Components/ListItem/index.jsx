@@ -1,15 +1,20 @@
-import PropTypes from "prop-types";
-import {Magicpen, ToggleOff, ToggleOn, Trash} from "iconsax-react";
-
-import "./style.scss";
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {editTask} from "../../../../Utils/Redux/Slices/Tasks/actions";
+import PropTypes from "prop-types";
+import {editTask} from "Utils/Redux/Slices/Tasks/actions";
+
+import {Magicpen, ToggleOff, ToggleOn, Trash} from "iconsax-react";
+import DeleteTaskModal from "../DeleteTaskModal";
+import EditTaskModal from "../EditTaskModal";
+
+import "./style.scss";
 
 export default function ListItem({ _id, title, status }) {
     const dispatch = useDispatch();
 
     const [isCompleted, setIsCompleted] = useState(status);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     const toggleCompleteStatus = () => {
         dispatch(editTask({taskId: _id, newStatus: !isCompleted }));
@@ -28,13 +33,28 @@ export default function ListItem({ _id, title, status }) {
                     <ToggleOff size={22}/>
                 }
             </button>
-            <button title={"Edit"}>
+            <button title={"Edit"} onClick={() => setIsEditModalOpen(true)}>
                 <Magicpen size={22} />
             </button>
-            <button title={"Delete"}>
+            <button title={"Delete"} onClick={() => setIsDeleteModalOpen(true)}>
                 <Trash size={22} />
             </button>
         </div>
+
+        {isDeleteModalOpen &&
+            <DeleteTaskModal
+                taskID={_id}
+                onClose={() => setIsDeleteModalOpen(false)}
+            />
+        }
+
+        {isEditModalOpen &&
+            <EditTaskModal
+                taskID={_id}
+                taskName={title}
+                onClose={() => setIsEditModalOpen(false)}
+            />
+        }
     </div>
 }
 
