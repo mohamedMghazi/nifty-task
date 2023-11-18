@@ -26,10 +26,10 @@ const filterTasks = createAsyncThunk('tasks/filterTasks', async (status = null) 
     }
 });
 
-const addTask = createAsyncThunk('tasks/addTask', async (taskData) => {
+const addTask = createAsyncThunk('tasks/addTask', async ({title}, {dispatch}) => {
     try {
-        const response = await APIHandler({ endpoint: "" });
-
+        const response = await APIHandler({ endpoint: "tasks/create", method: "POST", data: { title } });
+        dispatch(fetchTasks());
         return response.data;
     } catch (error) {
         throw error;
@@ -45,5 +45,14 @@ const editTask = createAsyncThunk('tasks/editTask', async ({ taskId, newTitle, n
         throw error;
     }
 });
+const deleteTask = createAsyncThunk('tasks/deleteTask', async ({taskId}) => {
+    try {
+        const response = await APIHandler({ endpoint: `tasks/${taskId}`, method: "DELETE" });
 
-export { fetchTasks, filterTasks, addTask, editTask };
+        return { taskId, updatedData: response.data };
+    } catch (error) {
+        throw error;
+    }
+});
+
+export { fetchTasks, filterTasks, addTask, editTask, deleteTask };

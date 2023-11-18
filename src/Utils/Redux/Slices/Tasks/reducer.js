@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {addTask, editTask, fetchTasks, filterTasks} from "./actions";
+import {addTask, deleteTask, editTask, fetchTasks, filterTasks} from "./actions";
 
 const tasksReducer = createSlice({
     name: 'tasks',
@@ -38,7 +38,6 @@ const tasksReducer = createSlice({
             })
             .addCase(addTask.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.tasks.push(action.payload);
             })
             .addCase(addTask.rejected, (state, action) => {
                 state.status = 'failed';
@@ -53,6 +52,18 @@ const tasksReducer = createSlice({
                 state.tasks = state.tasks.map((task) => task._id === taskId ? updatedData : task);
             })
             .addCase(editTask.rejected, (state, action) => {
+                state.status = 'failed';
+                state.error = "An error occurred while editing task. Please try again later.";
+            })
+            .addCase(deleteTask.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(deleteTask.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                const { taskId } = action.payload;
+                state.tasks = state.tasks.filter((task) => task._id !== taskId);
+            })
+            .addCase(deleteTask.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = "An error occurred while editing task. Please try again later.";
             });
