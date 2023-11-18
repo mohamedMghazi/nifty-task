@@ -1,0 +1,36 @@
+@import "../../../../Layout/Styles/style";
+
+.list-top-bar
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    color: $secondaryColor;
+
+    @media (max-width: 768px) {
+        margin-top: 20px;
+    }
+
+    .top-bar-title
+    {
+        flex: 0.9 1;
+        font-family: 'Blinker', sans-serif;
+        font-weight: 600;
+
+        @media (max-width: 768px) {
+            flex: 0.8 1;
+        }
+    }
+
+    select
+    {
+        flex: 0.1 1;
+        padding: 0.5rem 0;
+        border-radius: 0.5rem;
+
+        @media (max-width: 768px) {
+            flex: 0.2 1;
+        }
+    }
+}
