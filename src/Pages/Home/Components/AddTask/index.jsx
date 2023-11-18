@@ -1,8 +1,8 @@
 import {useState} from "react";
-import API from "../../../../Utils/API";
+import API from "Utils/API";
 
-import Field from "../../../../Components/Field";
-import SolidButton from "../../../../Components/SolidButton";
+import Field from "Components/Field";
+import SolidButton from "Components/SolidButton";
 
 import "./style.scss";
 
