@@ -8,6 +8,7 @@ import CookiesManager from "Utils/Storage/CookiesManager";
 
 import Field from "Components/Field";
 import SolidButton from "Components/SolidButton";
+import {toast} from "react-toastify";
 
 export default function Login() {
     const Cookies = new CookiesManager(30);
@@ -53,8 +54,16 @@ export default function Login() {
             })
             .catch((e) => {
                 if (e?.response && e?.response?.data) {
-                    const { errors } = e.response.data;
-                    setErrors(errors);
+                    toast.error("Something went wrong. Please try again.", {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
                 }
             })
             .finally(() => {
