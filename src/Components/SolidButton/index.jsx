@@ -3,9 +3,9 @@ import LoadingIndicator from "Components/LoadingIndicator";
 import "./style.scss";
 
 export default function SolidButton(props) {
-    const { title, type, onClick, loading, loadingElement } = props;
+    const { title, type, onClick, disabled, loading, loadingElement } = props;
     return (
-        <button className={"solid-button"} type={type} onClick={onClick} disabled={loading}>
+        <button className={"solid-button"} type={type} onClick={onClick} disabled={disabled || loading}>
             {loading ? loadingElement : title}
         </button>
     )
@@ -17,6 +17,7 @@ SolidButton.propTypes = {
     onClick: PropTypes.func,
     loading: PropTypes.bool,
     loadingElement: PropTypes.element,
+    disabled: PropTypes.bool,
 }
 
 SolidButton.defaultProps = {
@@ -24,4 +25,5 @@ SolidButton.defaultProps = {
     loading: false,
     onClick: () => { },
     loadingElement: <LoadingIndicator />,
+    disabled: false,
 }
