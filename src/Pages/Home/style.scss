@@ -34,15 +34,16 @@
         }
     }
 
-    section
+    #home-container
     {
         display: flex;
+        flex-direction: column;
         flex-grow: 1;
         flex-shrink: 1;
         flex-basis: 0;
         align-self: stretch;
         order: 2;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
         padding: 20px;
         overflow: hidden;
@@ -54,6 +55,50 @@
 
         &::-webkit-scrollbar {
             width: 0;
+        }
+
+        #tasks-container
+        {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-content: stretch;
+            width: 100%;
+
+            #tasks-list-container
+            {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                flex-direction: column;
+                flex-wrap: nowrap;
+                align-content: stretch;
+                width: 100%;
+                margin-top: 20px;
+                border-radius: 0.5rem;
+                box-shadow: 0 0 10px 0 $fadedPrimaryColor;
+                overflow: hidden;
+
+                .list-items-wrapper
+                {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    flex-direction: column;
+                    flex-wrap: nowrap;
+                    align-content: stretch;
+                    width: 100%;
+                    max-height: calc(100vh - 350px);
+                    overflow: hidden;
+                    overflow-y: auto;
+
+                    @media (max-width: 768px) {
+                        max-height: calc(100vh - 400px);
+                    }
+                }
+            }
         }
     }
 }

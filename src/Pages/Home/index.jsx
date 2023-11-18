@@ -3,8 +3,11 @@ import CookieManager from "../../Utils/Storage/CookiesManager";
 
 import AddTask from "./Components/AddTask";
 import SolidButton from "../../Components/SolidButton";
+import ListTopBar from "./Components/ListTopBar";
 
 import "./style.scss";
+import ListHeader from "./Components/ListHeader";
+import ListItem from "./Components/ListItem";
 
 export default function Home() {
     const cookies = new CookieManager();
@@ -16,11 +19,11 @@ export default function Home() {
     }
 
     useEffect(() => {
-        document.body.style.background = "#f4f6f7"
+        document.body.style.background = "#f4f6f7";
     }, []);
 
     return (
-        <main id={"home-wrapper"} data-testid={"home-wrapper"}>
+        <div id={"home-wrapper"} data-testid={"home-wrapper"}>
             <nav>
                 <h1>NiftyTask</h1>
 
@@ -30,11 +33,23 @@ export default function Home() {
                 />
             </nav>
 
-            <section>
+            <main id={"home-container"}>
                 <header>
                     <AddTask />
                 </header>
-            </section>
-        </main>
+
+                <section id={"tasks-container"}>
+                    <ListTopBar />
+
+                    <main id={"tasks-list-container"}>
+                        <ListHeader />
+
+                        <div className="list-items-wrapper">
+                            <ListItem />
+                        </div>
+                    </main>
+                </section>
+            </main>
+        </div>
     );
 }
