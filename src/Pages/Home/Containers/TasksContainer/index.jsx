@@ -22,6 +22,14 @@ export default function TasksContainer() {
         return <p className={"page-error"}>{error}</p>
     }
 
+    if (status !== "loading" && !tasks.length) {
+        return <section id="no-tasks-container">
+            <p className={"no-tasks-text"}>
+                Looks like your to-do list is enjoying a well-deserved break! Time to spice things up – add a sprinkle of nifty tasks and let the productivity party begin! 🚀✨
+            </p>
+        </section>
+    }
+
     return <section id="tasks-container">
         <ListTopBar />
 
