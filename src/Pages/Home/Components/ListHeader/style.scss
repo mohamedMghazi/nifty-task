@@ -1,0 +1,32 @@
+@import "../../../../Layout/Styles/style";
+
+.list-items-header
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    background: $fadedPrimaryColor;
+    width: 100%;
+    border-bottom: 0.3px solid $secondaryColor;
+
+    p
+    {
+        font-size: 1.1rem;
+        font-weight: 520;
+        color: $secondaryColor;
+        padding: 0.5rem;
+
+        &:first-child {
+            flex: 0.9 1;
+        }
+
+        &:last-child {
+            flex: 0.1 1;
+            text-align: center;
+            border-left: 0.3px solid $secondaryColor;
+        }
+    }
+}
