@@ -44,3 +44,33 @@
         }
     }
 }
+
+#no-tasks-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: stretch;
+    width: 100%;
+    height: 100%;
+
+    .no-tasks-text
+    {
+        max-width: 70%;
+        font-size: 1.5rem;
+        color: $secondaryColor;
+        margin-top: 20px;
+        text-align: center;
+
+        @media (max-width: 768px) {
+            max-width: 90%;
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 576px) {
+            font-size: 1.2rem;
+        }
+    }
+}
