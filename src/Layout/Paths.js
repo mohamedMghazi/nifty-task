@@ -6,7 +6,6 @@ import Register from "Pages/Authentication/Forms/Register";
 import Home from "Pages/Home";
 import NotFound from "../Pages/NotFound";
 
-// TODO: implement 404 and Unexpected error pages
 const PATHS = {
     path: "/",
     element: <Root />,
