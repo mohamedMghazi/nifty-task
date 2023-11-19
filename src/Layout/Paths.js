@@ -4,6 +4,7 @@ import Authentication from "Pages/Authentication";
 import Login from "Pages/Authentication/Forms/Login";
 import Register from "Pages/Authentication/Forms/Register";
 import Home from "Pages/Home";
+import NotFound from "../Pages/NotFound";
 
 // TODO: implement 404 and Unexpected error pages
 const PATHS = {
@@ -32,7 +33,7 @@ const PATHS = {
                 },
             ]
         },
-        { path: "*", element: <>Not found</> },
+        { path: "*", element: <NotFound /> },
     ],
 }
 

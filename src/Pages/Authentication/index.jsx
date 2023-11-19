@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import CookieManager from "Utils/Storage/CookiesManager";
 
-import PageHeader from "./Components/PageHeader";
+import PageHeader from "../../Components/PageHeader";
 
 import "./style.scss";
 
