@@ -1,4 +1,4 @@
-@import "../../../../Layout/Styles/style";
+@import "../../Layout/Styles/style";
 
 .page-header-container
 {
@@ -7,4 +7,11 @@
     text-align: center;
     font-family: 'Fira Sans Condensed', sans-serif;
     color: $secondaryColor;
+
+    a {
+        color: $secondaryColor;
+        text-decoration: none;
+        font-size: 2rem;
+        font-weight: 700;
+    }
 }

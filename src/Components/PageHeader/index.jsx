@@ -1,9 +1,10 @@
+import {Link} from "react-router-dom";
 import "./style.scss";
 
 export default function PageHeader () {
     return (
         <header className={"page-header-container"}>
-            <h1>NiftyTask</h1>
+            <Link to="/">NiftyTask</Link>
         </header>
     )
 }
