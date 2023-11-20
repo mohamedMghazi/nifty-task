@@ -41,7 +41,7 @@ git clone https://github.com/your-username/NiftyTask.git
 2. Install the dependencies:
 
 ```bash
-cd nifty-tasl
+cd nifty-task
 yarn install
 ```
 
