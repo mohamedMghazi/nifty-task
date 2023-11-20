@@ -1,5 +1,4 @@
 # NiftyTask
-______
 
 ## Table of Contents
 
@@ -14,11 +13,11 @@ ______
 
 NiftyTask is a task management web application built using React.js and Redux Toolkit for state management.
 Context is utilized for handling authentication, and React Router v6 is employed for seamless navigation.
-The backend, developed with Node.js, complements the frontend to provide a full-stack solution.
+The backend, developed with Node.js, complements the front end to provide a full-stack solution.
 
 ## Demo
 
-![NiftyTask Demo](img.png)
+![NiftyTask Demo](https://nifty-task-manager.vercel.app/img.png)
 [NiftyTask App](https://nifty-task-manager.vercel.app/)
 
 ## Features
